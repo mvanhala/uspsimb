@@ -1,0 +1,15 @@
+Package: uspsimb
+Title: USPS Intelligent Mail Barcode Encoder/Decoder
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Matthew",
+           family = "Van Hala",
+           role = c("aut", "cre"),
+           email = "matthew.vanhala@gmail.com")
+Description: Functions to encode and decode USPS Intelligent Mail Barcodes
+    on letters.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
