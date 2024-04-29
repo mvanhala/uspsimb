@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mvanhala.github.io/uspsimb//index.html</loc>
+    <loc>https://mvanhala.github.io/uspsimb/404.html</loc>
   </url>
   <url>
-    <loc>https://mvanhala.github.io/uspsimb//reference/imb_decode.html</loc>
+    <loc>https://mvanhala.github.io/uspsimb/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://mvanhala.github.io/uspsimb//reference/imb_encode.html</loc>
+    <loc>https://mvanhala.github.io/uspsimb/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://mvanhala.github.io/uspsimb/index.html</loc>
+  </url>
+  <url>
+    <loc>https://mvanhala.github.io/uspsimb/reference/imb_decode.html</loc>
+  </url>
+  <url>
+    <loc>https://mvanhala.github.io/uspsimb/reference/imb_encode.html</loc>
+  </url>
+  <url>
+    <loc>https://mvanhala.github.io/uspsimb/reference/index.html</loc>
   </url>
 </urlset>
