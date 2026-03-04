@@ -7,35 +7,35 @@ bars_to_codewords <- function(barcode) {
     char = stringr::str_split(barcode, "")[[1]],
     asc = char %in% c("A", "F"),
     desc = char %in% c("D", "F")
-  ) %>%
+  ) |>
     dplyr::left_join(bar_to_char, by = "bar")
 
   chars <- dplyr::bind_rows(
     dplyr::select(bar_bits, char = desc_char, bit_num = desc_bit, bit = desc),
     dplyr::select(bar_bits, char = asc_char, bit_num = asc_bit, bit = asc)
-  ) %>%
-    dplyr::arrange(char, dplyr::desc(bit_num)) %>%
-    dplyr::group_by(char) %>%
-    dplyr::summarise(bits = list(c(bit))) %>%
-    dplyr::rowwise() %>%
+  ) |>
+    dplyr::arrange(char, dplyr::desc(bit_num)) |>
+    dplyr::group_by(char) |>
+    dplyr::summarise(bits = list(c(bit))) |>
+    dplyr::rowwise() |>
     dplyr::mutate(
       bin = list(binaryLogic::as.binary(bits, logic = TRUE)),
       bin_negate = list(!bin),
       bin_int = as.integer(bin),
       bin_negate_int = as.integer(bin_negate)
-    ) %>%
+    ) |>
     dplyr::ungroup()
 
-  codeword_df <- chars %>%
+  codeword_df <- chars |>
     dplyr::left_join(
       dplyr::select(codeword_to_char, codeword_1 = codeword, base_10),
       by = c("bin_int" = "base_10")
-    ) %>%
+    ) |>
     dplyr::left_join(
       dplyr::select(codeword_to_char, codeword_2 = codeword, base_10),
       by = c("bin_negate_int" = "base_10")
-    ) %>%
-    dplyr::mutate(codeword = dplyr::coalesce(codeword_1, codeword_2)) %>%
+    ) |>
+    dplyr::mutate(codeword = dplyr::coalesce(codeword_1, codeword_2)) |>
     dplyr::mutate(
       codeword = dplyr::case_when(
         char == "J" ~ codeword / 2,

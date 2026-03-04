@@ -14,7 +14,7 @@ codeword_to_char_1 <- readr::read_csv(
 codeword_to_char_2 <- readr::read_csv(
   "data-raw/codeword_to_character_2.csv",
   col_types = "ici"
-) %>%
+) |>
   dplyr::mutate(codeword = codeword + 1287L)
 
 codeword_to_char <- dplyr::bind_rows(

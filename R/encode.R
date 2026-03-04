@@ -106,9 +106,9 @@ codewords_to_barcode <- function(codewords, fcs) {
   codeword_chars <- tibble::tibble(
     codeword = codewords,
     fcs_digit = as.logical(fcs[11:2])
-  ) %>%
-    dplyr::left_join(codeword_to_char, by = "codeword") %>%
-    dplyr::rowwise() %>%
+  ) |>
+    dplyr::left_join(codeword_to_char, by = "codeword") |>
+    dplyr::rowwise() |>
     dplyr::mutate(
       char_base_2 = list(
         binaryLogic::as.binary(
@@ -118,26 +118,27 @@ codewords_to_barcode <- function(codewords, fcs) {
       ),
       char_base_2_fcs = list(if (fcs_digit) !char_base_2 else char_base_2),
       chars = list(as.raw(char_base_2_fcs))
-    ) %>%
+    ) |>
     dplyr::ungroup()
 
-  char_bits <- codeword_chars %>%
+  char_bits <- codeword_chars |>
     dplyr::transmute(
       code_letter = LETTERS[1:10],
       bit_num = list(12:0),
       bit = char_base_2_fcs
-    ) %>%
+    ) |>
     tidyr::unnest(c(bit_num, bit))
 
-  bar_lettters <- bar_to_char %>%
+  bar_lettters <- bar_to_char |>
     dplyr::left_join(
       dplyr::rename(char_bits, desc = bit),
-      by = c("desc_char" = "code_letter", "desc_bit" = "bit_num")) %>%
+      by = c("desc_char" = "code_letter", "desc_bit" = "bit_num")) |>
     dplyr::left_join(
       dplyr::rename(char_bits, asc = bit),
       by = c("asc_char" = "code_letter", "asc_bit" = "bit_num")
-    ) %>%
+    ) |>
     dplyr::mutate(
+      dplyr::across(c(asc, desc), as.logical),
       barcode_letter = dplyr::case_when(
         asc & desc ~ "F",
         asc & !desc ~ "A",
