@@ -1,9 +1,8 @@
-pandoc: 2.7.3
-pkgdown: 2.0.9
+pandoc: 3.1.11
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-04-29T03:17Z
+last_built: 2026-03-08T16:59Z
 urls:
   reference: https://mvanhala.github.io/uspsimb/reference
   article: https://mvanhala.github.io/uspsimb/articles
-
